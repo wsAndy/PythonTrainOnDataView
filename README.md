@@ -7,3 +7,6 @@ Some of them could create XML file which could be used by Mxnet-ssd in `Annotati
 
 Others include some tools like how to change file's name or collect special data structure.
 
+
+grapyImageFromVideo.py: get image from gopro video
+
