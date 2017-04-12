@@ -41,7 +41,7 @@ cam_num = 1
 path = './Cam0'
 
 # assume only one video in '327' 
-video_file = '/327'
+video_file = '327'
 
 image_size = 1
 
@@ -53,7 +53,7 @@ if os.path.exists('./output') == False:
 
 # for each camera
 while cam_num < 7:
-    video_path = path+str(cam_num)+video_file
+    video_path = os.path.join(path+str(cam_num),video_file)
     filelist = os.listdir(video_path)
     video = []
     for x in filelist:
@@ -61,7 +61,7 @@ while cam_num < 7:
             video = x
 
     if video != []:
-        fp = cv2.VideoCapture(video_path+'/'+video)
+        fp = cv2.VideoCapture( os.path.join(video_path, str(video[0])) )
     else:
         print('ERROR, no video in ['+video_path+']')
         exit(-1)
@@ -70,7 +70,7 @@ while cam_num < 7:
     imgsize = 0
     while imgsize < image_size:
         fx,img = fp.read()
-        cv2.imwrite('./output/'+allImageIndex+'.jpg',img)
+        cv2.imwrite( os.path.join('./output',str(allImageIndex)+'.jpg'),img)
         allImageIndex = allImageIndex + 1
 
     fp.close()
